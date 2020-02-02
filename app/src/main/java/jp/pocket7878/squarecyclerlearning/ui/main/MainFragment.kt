@@ -65,6 +65,16 @@ class MainFragment : Fragment() {
                     }
                 }
             }
+
+            row<MainItem.ColorItem, ColoredItemView> {
+                create { context ->
+                    view = ColoredItemView(context)
+                    val colorView = view.findViewById<View>(R.id.color_view)
+                    bind { i, colorItem ->
+                        colorView.setBackgroundColor(colorItem.color)
+                    }
+                }
+            }
         }
 
         viewModel.mainData.observe(viewLifecycleOwner) {
