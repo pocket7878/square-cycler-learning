@@ -5,3 +5,5 @@ interface MainItem {
     data class NumberItem(val number: Int): MainItem
     data class ColorItem(val color: Int): MainItem
 }
+
+data class ExtraItem(val message: String)

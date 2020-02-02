@@ -20,6 +20,12 @@ class MainViewModel : ViewModel() {
     )
 
     private val _mainItems = MutableLiveData<List<MainItem>>(allItems)
-
     val mainData: LiveData<DataSource<MainItem>> = map(_mainItems) { it.toDataSource() }
+
+    private val _extraItem = MutableLiveData<ExtraItem>(ExtraItem("Shuffle"))
+    val extraItem: LiveData<ExtraItem> = _extraItem
+
+    fun shuffle() {
+        _mainItems.postValue(allItems.shuffled())
+    }
 }

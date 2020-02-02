@@ -51,7 +51,7 @@ class MainFragment : Fragment() {
             row<MainItem.FruitItem, View> {
                 create(R.layout.view_fruit_item) {
                     val fruitNameLabel = view.findViewById<TextView>(R.id.fruit_name)
-                    bind { i, fruitItem ->
+                    bind { fruitItem ->
                         fruitNameLabel.text = fruitItem.fruitName
                     }
                 }
@@ -60,7 +60,7 @@ class MainFragment : Fragment() {
             row<MainItem.NumberItem, View> {
                 create(R.layout.view_number_item) {
                     val numberLabel = view.findViewById<TextView>(R.id.number_name)
-                    bind { i, numberItem ->
+                    bind { numberItem ->
                         numberLabel.text = numberItem.number.toString()
                     }
                 }
@@ -70,8 +70,20 @@ class MainFragment : Fragment() {
                 create { context ->
                     view = ColoredItemView(context)
                     val colorView = view.findViewById<View>(R.id.color_view)
-                    bind { i, colorItem ->
+                    bind { colorItem ->
                         colorView.setBackgroundColor(colorItem.color)
+                    }
+                }
+            }
+
+            extraItem<ExtraItem, View> {
+                create(R.layout.view_extra_item) {
+                    val button = view.findViewById<TextView>(R.id.extra_item_label)
+                    bind { extraItem ->
+                        button.text = extraItem.message
+                        button.setOnClickListener {
+                            viewModel.shuffle()
+                        }
                     }
                 }
             }
@@ -79,6 +91,10 @@ class MainFragment : Fragment() {
 
         viewModel.mainData.observe(viewLifecycleOwner) {
             recycler.data = it
+        }
+
+        viewModel.extraItem.observe(viewLifecycleOwner) {
+            recycler.extraItem = it
         }
     }
 }
