@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.cycler.Recycler
 import com.squareup.cycler.toDataSource
@@ -66,11 +67,8 @@ class MainFragment : Fragment() {
             }
         }
 
-        recycler.data = listOf(
-            MainItem.NumberItem(10),
-            MainItem.FruitItem("Apple"),
-            MainItem.NumberItem(42),
-            MainItem.FruitItem("Orange")
-        ).toDataSource()
+        viewModel.mainData.observe(viewLifecycleOwner) {
+            recycler.data = it
+        }
     }
 }
