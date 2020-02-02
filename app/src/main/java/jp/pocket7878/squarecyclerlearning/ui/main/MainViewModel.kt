@@ -7,16 +7,15 @@ import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.ViewModel
 import com.squareup.cycler.DataSource
 import com.squareup.cycler.toDataSource
-import jp.pocket7878.squarecyclerlearning.R
 
 class MainViewModel : ViewModel() {
     private val allItems = listOf(
-        MainItem.NumberItem(10),
-        MainItem.FruitItem("Apple"),
-        MainItem.ColorItem(Color.RED),
-        MainItem.NumberItem(42),
-        MainItem.FruitItem("Orange"),
-        MainItem.ColorItem(Color.YELLOW)
+        MainItem.NumberItem(1,  10),
+        MainItem.FruitItem(2,"Apple"),
+        MainItem.ColorItem(3,Color.RED),
+        MainItem.NumberItem(4,42),
+        MainItem.FruitItem(5,"Orange"),
+        MainItem.ColorItem(6,Color.YELLOW)
     )
 
     private val _mainItems = MutableLiveData<List<MainItem>>(allItems)

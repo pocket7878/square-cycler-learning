@@ -1,14 +1,8 @@
 package jp.pocket7878.squarecyclerlearning.ui.main
 
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.drawable.Drawable
-import android.text.TextPaint
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.FrameLayout
 import jp.pocket7878.squarecyclerlearning.R
 

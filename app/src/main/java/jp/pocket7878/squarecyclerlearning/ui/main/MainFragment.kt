@@ -10,7 +10,6 @@ import android.widget.TextView
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.squareup.cycler.Recycler
-import com.squareup.cycler.toDataSource
 import jp.pocket7878.squarecyclerlearning.R
 import jp.pocket7878.squarecyclerlearning.databinding.MainFragmentBinding
 
@@ -48,6 +47,8 @@ class MainFragment : Fragment() {
         super.onResume()
 
         recycler = Recycler.adopt(binding.mainRecycler) {
+            stableId { it.id }
+
             row<MainItem.FruitItem, View> {
                 create(R.layout.view_fruit_item) {
                     val fruitNameLabel = view.findViewById<TextView>(R.id.fruit_name)
