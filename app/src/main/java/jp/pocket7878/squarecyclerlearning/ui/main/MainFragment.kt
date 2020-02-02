@@ -12,17 +12,11 @@ import com.squareup.cycler.Recycler
 import com.squareup.cycler.toDataSource
 import jp.pocket7878.squarecyclerlearning.R
 import jp.pocket7878.squarecyclerlearning.databinding.MainFragmentBinding
-import kotlinx.android.synthetic.main.view_fruit_item.view.*
 
 class MainFragment : Fragment() {
 
-    interface Item {
-        data class FruitItem(val fruitName: String): Item
-        data class NumberItem(val number: Int): Item
-    }
-
     private lateinit var binding: MainFragmentBinding
-    private lateinit var recycler: Recycler<Item>
+    private lateinit var recycler: Recycler<MainItem>
 
     companion object {
         fun newInstance() = MainFragment()
@@ -53,7 +47,7 @@ class MainFragment : Fragment() {
         super.onResume()
 
         recycler = Recycler.adopt(binding.mainRecycler) {
-            row<Item.FruitItem, View> {
+            row<MainItem.FruitItem, View> {
                 create(R.layout.view_fruit_item) {
                     val fruitNameLabel = view.findViewById<TextView>(R.id.fruit_name)
                     bind { i, fruitItem ->
@@ -62,7 +56,7 @@ class MainFragment : Fragment() {
                 }
             }
 
-            row<Item.NumberItem, View> {
+            row<MainItem.NumberItem, View> {
                 create(R.layout.view_number_item) {
                     val numberLabel = view.findViewById<TextView>(R.id.number_name)
                     bind { i, numberItem ->
@@ -73,10 +67,10 @@ class MainFragment : Fragment() {
         }
 
         recycler.data = listOf(
-            Item.NumberItem(10),
-            Item.FruitItem("Apple"),
-            Item.NumberItem(42),
-            Item.FruitItem("Orange")
+            MainItem.NumberItem(10),
+            MainItem.FruitItem("Apple"),
+            MainItem.NumberItem(42),
+            MainItem.FruitItem("Orange")
         ).toDataSource()
     }
 }
