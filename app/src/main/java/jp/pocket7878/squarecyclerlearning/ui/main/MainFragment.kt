@@ -77,16 +77,8 @@ class MainFragment : Fragment() {
                 }
             }
 
-            extraItem<ExtraItem, View> {
-                create(R.layout.view_extra_item) {
-                    val button = view.findViewById<TextView>(R.id.extra_item_label)
-                    bind { extraItem ->
-                        button.text = extraItem.message
-                        button.setOnClickListener {
-                            viewModel.shuffle()
-                        }
-                    }
-                }
+            extraClickableItem {
+                viewModel.shuffle()
             }
         }
 

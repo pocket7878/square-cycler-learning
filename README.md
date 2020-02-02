@@ -8,3 +8,4 @@ Using
 
 - stableIds to diffing shuffled item update.
 - create with Layout, custom view.
+- extension to build clickable extra item.
